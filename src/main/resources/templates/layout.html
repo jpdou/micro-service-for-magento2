@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">Micro Service for Magento2</title>
+    <meta th:replace="fragments/head"/>
+</head>
+<body>
+    <div th:replace="fragments/header :: header">HEADER</div>
+    <div id="main-container">
+        <div th:replace="fragments/navigation :: navigation">
+            NAVIGATION
+        </div>
+        <div id="main-content" layout:fragment="content">
+            CONTENT
+        </div>
+    </div>
+    <footer th:replace="fragments/footer :: footer">
+        FOOTER
+    </footer>
+</body>
+</html>
