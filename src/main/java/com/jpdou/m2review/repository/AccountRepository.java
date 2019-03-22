@@ -3,10 +3,12 @@ package com.jpdou.m2review.repository;
 import com.jpdou.m2review.exception.NoSuchEntityException;
 import com.jpdou.m2review.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
+@Component
 public class AccountRepository {
     @Autowired
     private AccountRepositoryInterface crudRepository;
@@ -29,5 +31,9 @@ public class AccountRepository {
         } else {
             throw new NoSuchEntityException();
         }
+    }
+
+    public void save(Account account) {
+        this.crudRepository.save(account);
     }
 }
