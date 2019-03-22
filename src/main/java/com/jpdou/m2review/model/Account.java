@@ -1,9 +1,13 @@
 package com.jpdou.m2review.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @Entity
 public class Account {
@@ -16,6 +20,9 @@ public class Account {
     private Integer package_type;
     private String created_at;
     private String updated_at;
+
+    @Autowired
+    private Messager messager;
 
     public int getId() {
         return id;
@@ -71,5 +78,31 @@ public class Account {
 
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public void auth(String password)
+    {
+        Context context = Context.getInstance();
+
+        if (!context.isLogged()) {
+            try {
+                MessageDigest md = MessageDigest.getInstance("KEY_MD5");
+                byte[] passwordBytes = password.getBytes();
+                md.update(passwordBytes);
+                String passwordHash = new String(md.digest());
+
+                boolean logged = this.password_hash.equals(passwordHash);
+
+                context.setLogged(logged);
+
+                if (logged) {
+                    this.messager.addSuccess("Welcome!");
+                } else {
+                    this.messager.addError("Your password is wrong, login failed!");
+                }
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
