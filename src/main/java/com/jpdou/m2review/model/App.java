@@ -9,8 +9,8 @@ import javax.persistence.Id;
 public class App {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
-    private Integer account_id;
+    private int id;
+    private int account_id;
     private String key;
     private String domain;
     private String profile;
@@ -25,11 +25,11 @@ public class App {
         this.id = id;
     }
 
-    public int getAccount_id() {
+    public int getAccountId() {
         return account_id;
     }
 
-    public void setAccount_id(int account_id) {
+    public void setAccountId(int account_id) {
         this.account_id = account_id;
     }
 
@@ -57,19 +57,19 @@ public class App {
         this.profile = profile;
     }
 
-    public String getCreated_at() {
+    public String getCreatedAt() {
         return created_at;
     }
 
-    public void setCreated_at(String created_at) {
+    public void setCreatedAt(String created_at) {
         this.created_at = created_at;
     }
 
-    public String getUpdated_at() {
+    public String getUpdatedAt() {
         return updated_at;
     }
 
-    public void setUpdated_at(String updated_at) {
+    public void setUpdatedAt(String updated_at) {
         this.updated_at = updated_at;
     }
 }

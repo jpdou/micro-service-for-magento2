@@ -19,9 +19,6 @@ public class AccountController {
     private AccountRepository accountRepository;
 
     @Autowired
-    private Messager messager;
-
-    @Autowired
     private AuthorizeService authorizeService;
 
     @PostMapping("/admin/loginPost")
@@ -51,6 +48,7 @@ public class AccountController {
         return response;
     }
 
+    @PostMapping("/admin/registerPost")
     public Response registerPost(
             @RequestParam(value="email", defaultValue="") String email,
             @RequestParam(value="password", defaultValue = "") String password,
@@ -60,7 +58,7 @@ public class AccountController {
         Response response = new Response();
 
         try {
-            Account account = this.accountRepository.findByEmail(email);
+            this.accountRepository.findByEmail(email);
 
             response.setMessage("This email was already registered.");
             return response;
@@ -71,10 +69,9 @@ public class AccountController {
         if (password.equals(passwordRepeat)) {
             Account account = new Account();
             account.setEmail(email);
-            account.setPassword(password);
 
-            String salt = this.authorizeService.getRandomSalt();
-            String passwordHash = this.authorizeService.hashPassword(account.getPassword(), salt);
+            String salt = this.authorizeService.getRandomSalt(4);
+            String passwordHash = this.authorizeService.hashPassword(password, salt);
 
             if (passwordHash.length() == 0) {
                 response.setMessage("An error occurred, please try again.");
@@ -85,6 +82,7 @@ public class AccountController {
             account.setPasswordHash(passwordHash);
 
             this.accountRepository.save(account);
+            response.setStatus(true);
         } else {
             response.setMessage("Please make sure the password and the password repeat is the same.");
         }

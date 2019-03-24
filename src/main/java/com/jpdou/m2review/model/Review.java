@@ -9,16 +9,16 @@ import javax.persistence.Id;
 public class Review {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
-    private Integer app_id;
-    private Integer type;
-    private Integer customer_id;
+    private int id;
+    private int app_id;
+    private int type;
+    private int customer_id;
     private boolean anonymous;
     private String content;
     private float rating;
     private boolean has_image;
     private String reply;
-    private Integer source;
+    private int source;
     private String created_at;
     private String updated_at;
 
@@ -30,11 +30,11 @@ public class Review {
         this.id = id;
     }
 
-    public int getApp_id() {
+    public int getAppId() {
         return app_id;
     }
 
-    public void setApp_id(int app_id) {
+    public void setAppId(int app_id) {
         this.app_id = app_id;
     }
 
@@ -46,11 +46,11 @@ public class Review {
         this.type = type;
     }
 
-    public int getCustomer_id() {
+    public int getCustomerId() {
         return customer_id;
     }
 
-    public void setCustomer_id(int customer_id) {
+    public void setCustomerId(int customer_id) {
         this.customer_id = customer_id;
     }
 
@@ -78,11 +78,11 @@ public class Review {
         this.rating = rating;
     }
 
-    public boolean isHas_image() {
+    public boolean hasImage() {
         return has_image;
     }
 
-    public void setHas_image(boolean has_image) {
+    public void setHasImage(boolean has_image) {
         this.has_image = has_image;
     }
 
@@ -102,19 +102,19 @@ public class Review {
         this.source = source;
     }
 
-    public String getCreated_at() {
+    public String getCreatedAt() {
         return created_at;
     }
 
-    public void setCreated_at(String created_at) {
+    public void setCreatedAt(String created_at) {
         this.created_at = created_at;
     }
 
-    public String getUpdated_at() {
+    public String getUpdatedAt() {
         return updated_at;
     }
 
-    public void setUpdated_at(String updated_at) {
+    public void setUpdatedAt(String updated_at) {
         this.updated_at = updated_at;
     }
 }

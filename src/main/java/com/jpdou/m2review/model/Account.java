@@ -8,14 +8,13 @@ import javax.persistence.Id;
 @Entity
 public class Account {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
     private String email;
-    private String password;
     private String password_hash;
     private String salt;
     private float credit_balance;
-    private Integer package_type;
+    private int package_type;
     private String created_at;
     private String updated_at;
 
@@ -39,14 +38,6 @@ public class Account {
         return password_hash;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public void setPasswordHash(String password_hash) {
         this.password_hash = password_hash;
     }
@@ -59,35 +50,35 @@ public class Account {
         this.salt = salt;
     }
 
-    public float getCredit_balance() {
+    public float getCreditBalance() {
         return credit_balance;
     }
 
-    public void setCredit_balance(float credit_balance) {
+    public void setCreditBalance(float credit_balance) {
         this.credit_balance = credit_balance;
     }
 
-    public int getPackage_type() {
+    public int getPackageType() {
         return package_type;
     }
 
-    public void setPackage_type(int package_type) {
+    public void setPackageType(int package_type) {
         this.package_type = package_type;
     }
 
-    public String getCreated_at() {
+    public String getCreatedAt() {
         return created_at;
     }
 
-    public void setCreated_at(String created_at) {
+    public void setCreatedAt(String created_at) {
         this.created_at = created_at;
     }
 
-    public String getUpdated_at() {
+    public String getUpdatedAt() {
         return updated_at;
     }
 
-    public void setUpdated_at(String updated_at) {
+    public void setUpdatedAt(String updated_at) {
         this.updated_at = updated_at;
     }
 

@@ -1,10 +1,7 @@
 package com.jpdou.m2review.model;
 
 import org.springframework.stereotype.Component;
-
-import java.nio.charset.Charset;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import org.springframework.util.DigestUtils;
 import java.util.Random;
 
 @Component
@@ -20,27 +17,22 @@ public class AuthorizeService {
         Context context = Context.getInstance();
 
         if (!context.isLogged()) {
-            String passwordHash = this.hashPassword(account.getPassword(), account.getSalt());
+            String passwordHash = this.hashPassword(password, account.getSalt());
             context.setLogged(account.getPasswordHash().equals(passwordHash));
         }
     }
 
-    public String getRandomSalt()
-    {
-        byte[] array = new byte[8]; // length is bounded by 8
-        new Random().nextBytes(array);
-        return new String(array, Charset.forName("UTF-8"));
+    public String getRandomSalt(int len) {
+        String pool = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0;i < len;i++) {
+            int r = new Random().nextInt(pool.length());
+            stringBuilder.append(pool.charAt(r));
+        }
+        return stringBuilder.toString();
     }
 
     public String hashPassword(String password, String salt) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("KEY_MD5");
-            byte[] passwordBytes = password.concat(salt).getBytes();
-            md.update(passwordBytes);
-            return new String(md.digest());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return "";
+        return DigestUtils.md5DigestAsHex(password.concat(salt).getBytes());
     }
 }
