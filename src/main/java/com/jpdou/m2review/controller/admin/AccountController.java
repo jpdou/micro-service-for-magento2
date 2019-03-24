@@ -8,6 +8,7 @@ import com.jpdou.m2review.model.Messager;
 import com.jpdou.m2review.model.http.Response;
 import com.jpdou.m2review.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,12 @@ public class AccountController {
     @Autowired
     private AuthorizeService authorizeService;
 
-    @PostMapping("/admin/loginPost")
+    @GetMapping("admin/account/login")
+    public String login() {
+        return "admin/account/login";
+    }
+
+    @PostMapping("/admin/account/loginPost")
     public Response loginPost(
         @RequestParam(value="email", defaultValue="") String email,
         @RequestParam(value="password", defaultValue = "") String password
@@ -48,7 +54,7 @@ public class AccountController {
         return response;
     }
 
-    @PostMapping("/admin/registerPost")
+    @PostMapping("/admin/account/registerPost")
     public Response registerPost(
             @RequestParam(value="email", defaultValue="") String email,
             @RequestParam(value="password", defaultValue = "") String password,
