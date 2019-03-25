@@ -4,7 +4,6 @@ import com.jpdou.m2review.exception.NoSuchEntityException;
 import com.jpdou.m2review.model.Account;
 import com.jpdou.m2review.model.AuthorizeService;
 import com.jpdou.m2review.model.Context;
-import com.jpdou.m2review.model.Messager;
 import com.jpdou.m2review.model.http.Response;
 import com.jpdou.m2review.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import java.sql.Timestamp;
 
 @RestController
 public class AccountController {
@@ -59,7 +59,6 @@ public class AccountController {
             @RequestParam(value="email", defaultValue="") String email,
             @RequestParam(value="password", defaultValue = "") String password,
             @RequestParam(value="password_repeat", defaultValue = "") String passwordRepeat
-
     ) {
         Response response = new Response();
 
@@ -86,6 +85,9 @@ public class AccountController {
 
             account.setSalt(salt);
             account.setPasswordHash(passwordHash);
+
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            account.setCreatedAt(timestamp.toString());
 
             this.accountRepository.save(account);
             response.setStatus(true);

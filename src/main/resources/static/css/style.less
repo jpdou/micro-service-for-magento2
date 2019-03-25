@@ -1,21 +1,43 @@
 header {
   height: 60px;
-  .app-name p {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 60px;
-    margin: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: #fff;
+  color: #404E67;
+  width: 100%;
+  -webkit-box-shadow: 0 0 11px rgba(0,0,0,0.13);
+  box-shadow: 0 0 11px rgba(0,0,0,0.13);
+  .logo {
+    float: left;
+    width: 200px;
+    p {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 60px;
+      margin: 0 20px;
+    }
+  }
+
+  .right-header {
+    float: right;
   }
 }
 
 #main-container {
+  margin-top: 60px;
+  position: relative;
   min-height: calc(100vh - 120px);
 }
 
 #navigation {
+  background: #404E67;
+  position: fixed;
   float: left;
   width: 200px;
   padding: 10px;
+  color: #dcdcdc;
 }
 
 #main-content {

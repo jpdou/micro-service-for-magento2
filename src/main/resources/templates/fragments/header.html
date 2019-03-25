@@ -1,4 +1,24 @@
 <header id="header" th:fragment="header">
-    <div class="app-name"><p>Services for Magento2</p></div>
-    <div class="account"></div>
+    <div class="logo"><p>Feed for M2</p></div>
+    <div class="right-header">
+        <div class="user-profile">
+            <div class="dropdown-primary dropdown show">
+                <div class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                    <span>{{username}}</span>
+                    <i class="feather icon-chevron-down"></i>
+                </div>
+                <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                    <li>
+                        <a href="user-profile.html"><i class="feather icon-user"></i> Profile</a>
+                    </li>
+                    <li>
+                        <a href="auth-lock-screen.html"><i class="feather icon-lock"></i> Lock Screen</a>
+                    </li>
+                    <li>
+                        <a href="auth-normal-sign-in.html"><i class="feather icon-log-out"></i> Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </header>
